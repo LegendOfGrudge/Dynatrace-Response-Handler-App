@@ -81,9 +81,6 @@ export const Data = () => {
       metricsClient
           .ingest({
               body: metricsData
-              // headers: {
-              //     'Authorization': `Bearer dt0c01.LSRS7UCUHCKXDTBYWEKTIXNE.F5MRUEVZD3TGHGQDVOEDSKSTUEHADDK4MSHAHPX2VEJD7B7RGCZB7UGPEV526PG2`
-              // }
           })
           .then((response) => {
               console.log(response);
