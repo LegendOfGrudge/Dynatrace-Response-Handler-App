@@ -3,6 +3,15 @@ import { Flex, Heading, Paragraph, Strong, useCurrentTheme } from "@dynatrace/st
 import { Card } from "../components/Card";
 import { functions } from '@dynatrace-sdk/app-utils';
 
+import {
+  FormField,
+  Label,
+  TextArea,
+  TextInput,
+  SelectV2,
+} from '@dynatrace/strato-components-preview/forms';
+import { Button } from '@dynatrace/strato-components-preview/buttons';
+
 export const Home = () => {
   const theme = useCurrentTheme();
   const [ method, setMethod ] = useState('POST');
@@ -61,60 +70,68 @@ export const Home = () => {
 
       <div className="inline-field-row" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '10px' }}>
         <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <label style={{ width: '80px' }}>Method</label>
-          <select
-            value={method}
-            onChange={(e) => setMethod(e.target.value)}
-            style={{ width: '120px' }}
-          >
-            {METHOD_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <FormField>
+            <Label style={{ width: '80px' }}>Method</Label>
+            <SelectV2
+              value={method}
+              onChange={setMethod}
+            >
+              <SelectV2.Content>
+                {METHOD_OPTIONS.map((option) => (
+                  <SelectV2.Option key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectV2.Option>
+                ))}
+              </SelectV2.Content>
+            </SelectV2>
+          </FormField>
         </div>
         <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <label style={{ width: '80px' }}>Hostname</label>
-          <input
-            type="text"
-            defaultValue={hostname}
-            style={{ width: '180px' }}
-            onBlur={(e) => setHostname(e.target.value)}
-          />
+          <FormField>
+            <Label style={{ width: '80px' }}>Hostname</Label>
+            <TextInput
+              type="text"
+              defaultValue={hostname}
+              onChange={setHostname}
+            />
+          </FormField>
         </div>
         <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <label style={{ width: '80px' }}>Port</label>
-          <input
-            type="text"
-            defaultValue={port}
-            style={{ width: '180px' }}
-            onBlur={(e) => setPort(e.target.value)}
-          />
+          <FormField>
+            <Label style={{ width: '80px' }}>Port</Label>
+            <TextInput
+              type="text"
+              defaultValue={port}
+              onChange={setPort}
+            />
+          </FormField>
         </div>
         <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <label style={{ width: '80px' }}>Path</label>
-          <input
-            type="text"
-            defaultValue={path}
-            style={{ width: '180px' }}
-            onBlur={(e) => setPath(e.target.value)}
-          />
+          <FormField>
+            <Label style={{ width: '80px' }}>Path</Label>
+            <TextInput
+              type="text"
+              defaultValue={path}
+              onChange={setPath}
+            />
+          </FormField>
         </div>
         {method === 'POST' && (
           <div className="inline-field" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <label>POST Body</label>
-            <textarea
-              defaultValue={postBody}
-              cols={80}
-              rows={4}
-              onBlur={(e) => setPostBody(e.target.value)}
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>POST Body</Label>
+              <TextArea
+                defaultValue={postBody}
+                cols={80}
+                rows={4}
+                onChange={setPostBody}
+              />
+            </FormField>
           </div>
         )}
-        <button onClick={send}>Click Me!</button>
-        <p>Cookie: {cookieValue}</p>
-        <p>CSRF: {csrf}</p>
+        <Button onClick={send}>Click Me!</Button>
+        <Paragraph>Cookie: {cookieValue}</Paragraph>
+        <Paragraph>CSRF: {csrf}</Paragraph>
       </div>
 
       <Flex gap={48} paddingTop={64} flexFlow="wrap">

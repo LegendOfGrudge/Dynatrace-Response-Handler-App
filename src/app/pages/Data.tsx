@@ -16,6 +16,13 @@ import React, { useState } from "react";
 import { functions } from '@dynatrace-sdk/app-utils';
 import { metricsClient } from '@dynatrace-sdk/client-classic-environment-v2';
 
+import {
+  FormField,
+  Label,
+  TextInput,
+} from '@dynatrace/strato-components-preview/forms';
+import { Button } from '@dynatrace/strato-components-preview/buttons';
+
 export const Data = () => {
   const initialQuery = "fetch logs \n| summarize count(), by:{bin(timestamp, 1m)}";
 
@@ -27,16 +34,6 @@ export const Data = () => {
   const [ csrf, setCSRF ] = useState(`${localStorage.getItem('csrf')}`);
   const [ cookie_name, setCookieName ] = useState(`${localStorage.getItem('cookieName')}`);
   const [ cookie_value, setCookieValue ] = useState(`${localStorage.getItem('cookieValue')}`);
-  const METHOD_OPTIONS = [
-    {
-      label: 'GET',
-      value: 'GET',
-    },
-    {
-      label: 'POST',
-      value: 'POST',
-    },
-  ];
 
   const { data, errorDetails, isLoading, cancel, refetch } = useDqlQuery({ body: { query: queryString } });
 
@@ -185,61 +182,67 @@ export const Data = () => {
 
         <div className="inline-field-row" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '10px' }}>
           <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <label style={{ width: '85px' }}>Hostname</label>
-            <input
-              type="text"
-              defaultValue={hostname}
-              style={{ width: '180px' }}
-              onBlur={(e) => setHostname(e.target.value)}
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>Hostname</Label>
+              <TextInput
+                type="text"
+                defaultValue={hostname}
+                onChange={setHostname}
+              />
+            </FormField>
           </div>
           <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <label style={{ width: '85px' }}>Port</label>
-            <input
-              type="text"
-              defaultValue={port}
-              style={{ width: '180px' }}
-              onBlur={(e) => setPort(e.target.value)}
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>Port</Label>
+              <TextInput
+                type="text"
+                defaultValue={port}
+                onChange={setPort}
+              />
+            </FormField>
           </div>
           <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <label style={{ width: '85px' }}>Instance</label>
-            <input
-              type="text"
-              defaultValue={instance}
-              style={{ width: '180px' }}
-              onBlur={(e) => setInstance(e.target.value)}
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>Instance</Label>
+              <TextInput
+                type="text"
+                defaultValue={instance}
+                onChange={setInstance}
+              />
+            </FormField>
           </div>
           <br />
           <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <label style={{ width: '85px' }}>Cookie Name</label>
-            <input
-              type="text"
-              defaultValue={cookie_name}
-              style={{ width: '180px' }}
-              disabled
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>Cookie Name</Label>
+              <TextInput
+                type="text"
+                defaultValue={cookie_name}
+                readOnly
+              />
+            </FormField>
           </div>
           <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <label style={{ width: '85px' }}>Cookie Value</label>
-            <input
-              type="text"
-              defaultValue={cookie_value}
-              style={{ width: '180px' }}
-              disabled
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>Cookie Value</Label>
+              <TextInput
+                type="text"
+                defaultValue={cookie_value}
+                readOnly
+              />
+            </FormField>
           </div>
           <div className="inline-field" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <label style={{ width: '85px' }}>CSRF Token</label>
-            <input
-              type="text"
-              defaultValue={csrf}
-              style={{ width: '180px' }}
-              disabled
-            />
+            <FormField>
+              <Label style={{ width: '80px' }}>CSRF Token</Label>
+              <TextInput
+                type="text"
+                defaultValue={csrf}
+                readOnly
+              />
+            </FormField>
           </div>
-          <button onClick={send}>Get Data</button>
+          <Button onClick={send}>Get Data</Button>
         </div>
       </Flex>
 
