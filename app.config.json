@@ -1,0 +1,35 @@
+{
+  "environmentUrl": "https://nyf84050.apps.dynatrace.com/ui/",
+  "app": {
+    "name": "response-handler",
+    "version": "0.0.0",
+    "description": "A starting project with routing, fetching data, and charting",
+    "id": "my.response.handler",
+    "scopes": [
+      {
+        "name": "storage:logs:read",
+        "comment": "default template"
+      },
+      {
+        "name": "storage:buckets:read",
+        "comment": "default template"
+      },
+      {
+        "name": "storage:events:read",
+        "comment": "allows to query events from Grail"
+      },
+      {
+        "name": "state:app-states:read",
+        "comment": "allows to read app state"
+      },
+      {
+        "name": "storage:metrics:write",
+        "comment": "allows to write metrics"
+      },
+      {
+        "name": "storage:metrics:read",
+        "comment": "allows to read metrics"
+      }
+    ]
+  }
+}
