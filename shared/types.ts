@@ -18,3 +18,13 @@ export type TokenInput = {
   csrf: string;
   postBody: string;
 }
+
+export type ChartInput = {
+  id: string;
+  hostname: string;
+  port: string;
+  cookieName: string;
+  cookieValue: string;
+  csrf: string;
+  instance: string;
+}
